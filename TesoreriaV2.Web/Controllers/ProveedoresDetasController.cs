@@ -26,39 +26,25 @@ namespace TesoreriaV2.Web.Controllers
         [HttpGet("[action]")]
         public async Task<IEnumerable<ProveedorDetaViewModel>> Listar()
         {
-            var deta = await _context.proveedoresdetas.ToListAsync();
+            var deta = await _context.proveedoresdetas.Select(ep => ep).OrderBy(ep=>ep.MONTO).ToListAsync();
 
-            return deta.Select(d => new ProveedorDetaViewModel
+            return deta.Select(ep => new ProveedorDetaViewModel
             {
-                RUT = d.RUT,
-                REFTIPODOC = d.REFTIPODOC,
-                REFNRODOC = d.REFNRODOC,
-                TIPODOC = d.TIPODOC,
-                NRODOC = d.NRODOC,
-                CARGO = d.CARGO,
-                ABONO = d.ABONO,
-                CORRELATIVO = d.CORRELATIVO,
-                MONTO = d.MONTO,
-                CCOSTOS = d.CCOSTOS,
-                CODCLA = d.CODCLA
+                CORRELATIVO = ep.CORRELATIVO,
+                MONTO = ep.MONTO,
+                CCOSTOS = ep.CCOSTOS,
+                CODCLA = ep.CODCLA
             });
         }
 
         // GET: api/ProveedoresDetas/ListarDeta
         [HttpGet("[action]/{correlativo}")]
-        public async Task<IEnumerable<ProveedorDetaViewModel>> ListarDeta([FromRoute] string correlativo)
+        public async Task<IEnumerable<ProveedorDetaViewModel>> ListarDeta([FromRoute] long correlativo)
         {
-            var deta = await _context.proveedoresdetas.Where(de => de.CORRELATIVO==correlativo).ToListAsync();
-
+            var deta = await _context.proveedoresdetas.Where(ep => ep.CORRELATIVO==correlativo).ToListAsync();
+            //var deta = await _context.proveedoresdetas.ToListAsync();
             return deta.Select(ep => new ProveedorDetaViewModel
             {
-                RUT = ep.RUT,
-                REFTIPODOC = ep.REFTIPODOC,
-                REFNRODOC = ep.REFNRODOC,
-                TIPODOC = ep.TIPODOC,
-                NRODOC = ep.NRODOC,
-                CARGO = ep.CARGO,
-                ABONO = ep.ABONO,
                 CORRELATIVO = ep.CORRELATIVO,
                 MONTO = ep.MONTO,
                 CCOSTOS = ep.CCOSTOS,
@@ -152,9 +138,9 @@ namespace TesoreriaV2.Web.Controllers
             return Ok();
         }
 
-        private bool ProveedorDetaExists(string id)
+        private bool ProveedorDetaExists(int id)
         {
-            return _context.proveedoresdetas.Any(e => e.RUT == id);
+            return _context.proveedoresdetas.Any(e => e.ID == id);
         }
     }
 }

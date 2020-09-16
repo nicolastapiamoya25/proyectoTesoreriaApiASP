@@ -11,12 +11,12 @@ namespace TesoreriaV2.Datos
     {
         public DbSet<Proveedores> proveedores { get; set; }
         public DbSet<Perfil> perfiles { get; set; }
-        public DbSet<DetaProveedores> detaproveedores { get; set; }
-        public DbSet<EncaProveedores> encaproveedores { get; set; }
         public DbSet<Personas> personas { get; set; }
         public DbSet<TipoDocumento> tipodocumentos { get; set; }
+
         public DbSet<ProveedorEnca> proveedoresencas { get; set; }
         public DbSet<ProveedorDeta> proveedoresdetas { get; set; }
+
         public DbSet<CentroCosto> centrocostos { get; set; }
 
 
@@ -31,8 +31,6 @@ namespace TesoreriaV2.Datos
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new ProveedorMap());
             modelBuilder.ApplyConfiguration(new PerfilMap());
-            modelBuilder.ApplyConfiguration(new DetaProveedoresMap());
-            modelBuilder.ApplyConfiguration(new EncaProveedoresMap());
             modelBuilder.ApplyConfiguration(new PersonasMap());
             modelBuilder.ApplyConfiguration(new TipoDocumentoMap());
             modelBuilder.ApplyConfiguration(new ProveedorEncaMap());

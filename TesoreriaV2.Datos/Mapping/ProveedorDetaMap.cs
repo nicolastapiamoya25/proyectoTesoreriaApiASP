@@ -11,7 +11,7 @@ namespace TesoreriaV2.Datos.Mapping
     {
         public void Configure(EntityTypeBuilder<ProveedorDeta> builder)
         {
-            builder.ToTable("ProveedoresDeta").HasKey(pd => pd.RUT);
+            builder.ToTable("ProveedoresDeta").HasKey(pd => pd.ID);
         }
     }
 }

@@ -15,5 +15,6 @@ namespace TesoreriaV2.Entidades
         public string permisos { get; set; }
         public byte[] password_hash { get; set; }
         public byte[] password_salt { get; set; }
+
     }
 }

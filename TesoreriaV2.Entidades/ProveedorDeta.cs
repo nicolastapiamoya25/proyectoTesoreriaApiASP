@@ -6,7 +6,7 @@ namespace TesoreriaV2.Entidades
 {
     public class ProveedorDeta
     {
-        public int ID { get; set; }
+        public int ID { get; set; } 
         public string RUT { get; set; }
         public string REFTIPODOC { get; set; }
         public string REFNRODOC { get; set; }

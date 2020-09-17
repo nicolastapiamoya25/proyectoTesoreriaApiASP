@@ -22,7 +22,7 @@ namespace TesoreriaV2.Web.Controllers
             _context = context;
         }
 
-        // GET: api/ProveedoresDetas/Listar
+        // GET: api/ProveedoresDetas/Listar 
         [HttpGet("[action]")]
         public async Task<IEnumerable<ProveedorDetaViewModel>> Listar()
         {
